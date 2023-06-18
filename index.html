@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Female - Boost - Dosage Calculator</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="script.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      const firstRoundEstrogenCheckbox = document.getElementById('firstRoundEstrogen');
+      const symptomaticCheckbox = document.getElementById('symptomaticEstradiol');
+      const additionalFieldsContainer = document.getElementById('additionalFieldsContainer');
+      const symptomaticContainer = document.getElementById('symptomaticContainer');
+
+      firstRoundEstrogenCheckbox.addEventListener('change', (event) => {
+        if (firstRoundEstrogenCheckbox.checked) {
+          symptomaticContainer.style.display = 'block';
+        } else {
+          symptomaticContainer.style.display = 'none';
+          symptomaticCheckbox.checked = false;
+          additionalFieldsContainer.style.display = 'none';
+        }
+      });
+
+      symptomaticCheckbox.addEventListener('change', (event) => {
+        if (symptomaticCheckbox.checked) {
+          additionalFieldsContainer.style.display = 'block';
+        } else {
+          additionalFieldsContainer.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <h1>Female - Boost</h1>
+  <h2>Dosage Calculator</h2>
+
+  <div id="testosteroneDoseBlock">
+    <h3>Testosterone Boost: <span id="testosteroneBoost">-</span></h3>
+    <h3>Estradiol Boost: <span id="estradiolBoost">-</span></h3>
+    
+    
+  </div>
+  <div id="dialogueContainer"></div>
+  
+
+ 
+  <form action="/submit" method="post" id="form">
+    <fieldset>
+      <legend>Patient Information</legend>
+      <label for="patientName">Patient ID:</label>
+      <input type="text" id="patientID" name="patientID" required><br><br>
+    
+      <label for="patientAge">Patient Age:</label>
+      <input type="number" id="patientAge" name="patientAge" required><br><br>
+    
+      <label for="patientWeight">Patient Weight (lbs):</label>
+      <input type="number" id="patientWeight" name="patientWeight"><br><br>
+
+    </fieldset>
+    <br><br>
+    <fieldset>
+      <legend>Last Procedure Information</legend>
+      <label for="lastProcedureDate">Last Procedure Date (mm/dd/yyyy):</label>
+      <input type="date" id="lastProcedureDate" name="lastProcedureDate" required><br><br>
+    
+    </fieldset>
+    <br><br>
+
+
+    <fieldset>
+      <legend>TESTOSTERONE</legend>
+      <label for="testosteroneLabs">Testosterone Labs (at 5 weeks):</label>
+      <input type="number" id="testosteroneLabs" name="testosteroneLabs" step="0.01" required><br><br>
+    
+      <label for="lastTestosteroneDose">Last Testosterone Dose:</label>
+      <input type="number" id="lastTestosteroneDose" name="lastTestosteroneDose" step="0.01" required><br><br>
+
+      <label for="symptomaticTestosterone">Symptomatic?:</label>
+      <input type="checkbox" id="symptomaticTestosterone" name="symptomaticTestosterone"><br>
+      <span class="guiding-text">(low libido, lack of energy, mood swings/depression, foggy memory, night sweats, etc)</span>
+      <br><br>
+    </fieldset>
+    <br><br>
+    <fieldset>
+      <legend>ESTRADIOL</legend>
+
+      <label for="firstRoundEstrogen">Did the patient get estrogen the first round?</label>
+      <input type="checkbox" id="firstRoundEstrogen" name="firstRoundEstrogen" ><br><br>
+
+      <div id="symptomaticContainer" style="display: none;">
+        <label for="symptomaticEstradiol">Symptomatic?:</label>
+        <input type="checkbox" id="symptomaticEstradiol" name="symptomaticEstradiol">
+        <span class="guiding-text">(hot flashes, vaginal dryness, etc)</span>
+        <br><br>
+        <div id="additionalFieldsContainer" style="display: none;">
+          <label for="lastEstradiolDose">Last Estradiol Dose:</label>
+          <input type="number" id="LED" name="lastEstradiolDose" step="0.01"><br><br>
+
+          <label for="originalFSH">Original FSH:</label>
+          <input type="number" id="originalFSH" name="originalFSH" step="0.01" ><br><br>
+
+          <label for="postPelletFSH">5 Week Post Pellet FSH:</label>
+          <input type="number" id="postPelletFSH" name="postPelletFSH" step="0.01" ><br><br>
+        </div>
+      </div>
+    </fieldset>
+
+    <input type="submit" value="Calculate">
+  </form>
+</body>
+</html>
