@@ -13,6 +13,14 @@ window.addEventListener("DOMContentLoaded", function () {
   //calculate doses
   function calculateDoses() {
 
+    testosteroneBoost.textContent = "";
+    estradiolBoost.textContent = "";
+    
+    //id ="appendcontent" make innerHTML = ""
+    var appendcontent = document.getElementById("appendcontent");
+    appendcontent.innerHTML = "";
+
+
     if(isCalculatable() ===true) {
         testosteroneBoost.textContent = calculateTestosteroneBoost();
         estradiolBoost.textContent = calculateEstradiolBoost();
@@ -21,7 +29,7 @@ window.addEventListener("DOMContentLoaded", function () {
         testosteroneBoost.textContent = "0mg";
         estradiolBoost.textContent = "0mg";
         //add a red color paragraph to id = "testosteroneDoseBlock"
-        var testosteroneDoseBlock = document.getElementById("testosteroneDoseBlock");
+        var testosteroneDoseBlock = document.getElementById("appendcontent");
         var testosteroneDoseBlockP = document.createElement("p");
         testosteroneDoseBlockP.textContent = "Consider next full procedure round of pellets instead of a boost.";
         testosteroneDoseBlockP.style.color = "red";
